@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore only the specific raw data folder that exceeds GitHub limits
+Data/Bases antigas/Base de dados - Passos Mágicos/
+
+# Streamlit/virtualenvs
+.streamlit/
+venv/
+env/
+.env
+.venv

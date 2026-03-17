@@ -1,0 +1,35 @@
+{
+  "nome": "Random Forest",
+  "features": [
+    "IDA",
+    "IEG",
+    "IAA",
+    "IPS",
+    "IPP",
+    "IPV",
+    "Nota_Mat",
+    "Nota_Por",
+    "Fase_Num",
+    "Anos_No_Programa",
+    "Instituicao_Publica",
+    "Genero_Num",
+    "Num_Avaliacoes"
+  ],
+  "metricas": {
+    "cv_auc_mean": 0.7349836077632179,
+    "cv_auc_std": 0.03162247810922321,
+    "accuracy": 0.6124567474048442,
+    "precision": 0.5551282051282052,
+    "recall": 0.8108614232209738,
+    "f1": 0.6590563165905632,
+    "roc_auc": 0.6769933884894686
+  },
+  "target": "Risco_Defasagem",
+  "treino_anos": [
+    2022,
+    2023
+  ],
+  "teste_ano": 2024,
+  "treino_n": 1874,
+  "teste_n": 1156
+}
