@@ -1,5 +1,7 @@
 # Datathon Fase 5 - Passos Mágicos
 
+**🌐 App ao vivo (Streamlit):** [https://datathon-5-ajttl.streamlit.app/](https://datathon-5-ajttl.streamlit.app/)
+
 Análise de dados educacionais e modelo preditivo de risco de defasagem para a Associação Passos Mágicos.
 
 ## Sobre o Projeto
@@ -43,44 +45,12 @@ Tech Challenge 5/
 └── README.md
 ```
 
-## Como Executar
+## Sobre a Estrutura
 
-### Pré-requisitos
-
-- Python 3.10+
-- pip
-
-### Instalação
-
-```bash
-pip install -r requirements.txt
-```
-
-### Executar o ETL (processamento dos dados)
-
-```bash
-python notebooks/01_eda_limpeza.py
-```
-
-### Executar a análise das 11 perguntas
-
-```bash
-python notebooks/02_analise_perguntas.py
-```
-
-### Treinar o modelo preditivo
-
-```bash
-python notebooks/03_modelo_preditivo.py
-```
-
-### Executar o app Streamlit localmente
-
-```bash
-streamlit run app/1_Visão_Geral.py
-```
-
-O app estará disponível em `http://localhost:8501`.
+- **data_processed/**: Contém a base em `.parquet` após o tratamento (ETL), pronta para leitura veloz pela aplicação.
+- **notebooks/**: Armazena o racional passo a passo do projeto. Dividido no ETL de limpeza e padronização (`01_eda_limpeza.py`), na carga de análises interativas que respondem às 11 perguntas de negócio (`02_analise_perguntas.py`), e na construção teórica do estimador (`03_modelo_preditivo.py`).
+- **app/**: Abrigação das páginas que compõem a aplicação front-end Streamlit, orquestradas pelo `1_Visão_Geral.py`.
+- **models/** e **plots/**: Artefatos congelados (como o `.joblib` do modelo) e gráficos estáticos gerados na EDA.
 
 ## Modelo Preditivo
 
@@ -120,15 +90,9 @@ Prever o risco de defasagem de alunos com base nos indicadores educacionais.
 5. **Programa funciona:** Proporção de alunos Topázio cresceu de 15.1% para 30.9%
 6. **Escola pública:** Menor IDA mas maior Engajamento
 
-## Deploy no Streamlit Cloud
+## Autor
 
-1. Push do repositório para o GitHub
-2. Acessar [share.streamlit.io](https://share.streamlit.io)
-3. Branch: `main`, arquivo: `app/1_Visão_Geral.py`
-
-## Autores
-
-Equipe Datathon Fase 5 - POSTECH DTAT
+Arnaldo Janssen Tavares Toledo Laudares
 
 ## Licença
 
