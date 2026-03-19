@@ -303,23 +303,18 @@
         <!-- Slide 6 -->
         <section class="slide">
             <h1>A Escolha das Features do Modelo</h1>
-            <div class="content grid-2">
-                <div>
-                    <h2 style="font-size: 1.5rem; color: var(--accent);">Por que o INDE e o IAN foram removidos?</h2>
-                    <p style="font-size: 1.1rem; color: #E5E7EB; margin-bottom: 1.5rem;">O IAN é derivado matematicamente da defasagem (nosso target), e o INDE é a soma dos demais. Dar isso ao algoritmo é "data leakage". Ele não previa o futuro, apenas "lia a resposta".</p>
-                    
-                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Por que manter as 13 features restantes?</h2>
-                    <ul style="font-size: 1rem; line-height: 1.4;">
-                        <li><strong>IPV:</strong> Captura o momento genuíno de transformação na vida do aluno.</li>
-                        <li><strong>IEG:</strong> Aluno desengajado é sempre o 1º sinal empírico de risco de queda.</li>
-                        <li><strong>IDA:</strong> Evidência direta acadêmica (as notas em si).</li>
-                        <li><strong>Fase e Anos no Programa:</strong> O tempo de exposição à ONG garante a maturação da criança.</li>
-                        <li><strong>Notas M/P:</strong> Matemática e Português agem como termômetro raiz das dificuldades.</li>
-                    </ul>
-                </div>
-                <div class="img-container">
-                    <img src="plots/p9_feature_importance.png" alt="Feature Implementations">
-                </div>
+            <div class="content">
+                <h2 style="font-size: 1.5rem; color: var(--accent);">Por que o INDE e o IAN foram removidos?</h2>
+                <p style="font-size: 1.1rem; color: #E5E7EB; margin-bottom: 1.5rem;">O IAN é derivado matematicamente da defasagem (nosso target), e o INDE é a soma dos demais. Dar isso ao algoritmo é "data leakage". Ele não previa o futuro, apenas "lia a resposta".</p>
+                
+                <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Por que manter as 13 features restantes?</h2>
+                <ul style="font-size: 1rem; line-height: 1.4;">
+                    <li><strong>IPV:</strong> Captura o momento genuíno de transformação na vida do aluno.</li>
+                    <li><strong>IEG:</strong> Aluno desengajado é sempre o 1º sinal empírico de risco de queda.</li>
+                    <li><strong>IDA:</strong> Evidência direta acadêmica (as notas em si).</li>
+                    <li><strong>Fase e Anos no Programa:</strong> O tempo de exposição à ONG garante a maturação da criança.</li>
+                    <li><strong>Notas M/P:</strong> Matemática e Português agem como termômetro raiz das dificuldades.</li>
+                </ul>
             </div>
         </section>
 
@@ -379,9 +374,14 @@
                         <li><strong>As Técnicas Testadas:</strong> Regressão Logística vs Random Forest vs Gradient Boosting.</li>
                     </ul>
                 </div>
-                <div class="img-container">
-                    <!-- Podemos usar o heatmap como representação visual da etapa estatística descritiva antes da modelagem -->
-                    <img src="plots/p8_heatmap_correlacao.png" alt="Heatmap Correlativo de Modelagem">
+                <div style="display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; align-items: stretch; height: 100%; padding: 1rem;">
+                    <div class="card" style="text-align: center; font-size: 1.2rem; font-weight: bold; background: rgba(108,99,255,0.1); border-color: var(--primary);">📥 Dados Brutos</div>
+                    <div style="text-align: center; color: var(--text-muted); font-size: 1.5rem;">⬇</div>
+                    <div class="card" style="text-align: center; font-size: 1.2rem; font-weight: bold; background: rgba(167,139,250,0.1); border-color: var(--secondary);">⚙️ Pré-processamento</div>
+                    <div style="text-align: center; color: var(--text-muted); font-size: 1.5rem;">⬇</div>
+                    <div class="card" style="text-align: center; font-size: 1.2rem; font-weight: bold; background: rgba(244,114,182,0.1); border-color: var(--accent);">🧠 Modelos</div>
+                    <div style="text-align: center; color: var(--text-muted); font-size: 1.5rem;">⬇</div>
+                    <div class="card" style="text-align: center; font-size: 1.2rem; font-weight: bold; background: rgba(52,211,153,0.1); border-color: var(--success);">📊 Avaliação</div>
                 </div>
             </div>
         </section>
@@ -425,7 +425,7 @@
                     </ul>
                 </div>
                 <div class="card" style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                    <h2 style="margin:0; text-align: center;">🎨 DEMONSTRAÇÃO<br><span style="font-size:1.2rem; font-weight: 300; color:var(--text-muted);">Visualizar o APP aberto em produção</span></h2>
+                    <h2 style="margin:0; text-align: center;">🎨 DEMONSTRAÇÃO<br><span style="font-size:1.2rem; font-weight: 300; color:var(--text-muted);">Visualizar o App finalizado</span></h2>
                 </div>
             </div>
         </section>
@@ -446,11 +446,10 @@
         </section>
 
         <!-- Slide 13 -->
-        <section class="slide title-slide" style="align-items: center; text-align: center;">
-            <h1 style="font-size: 5rem;">Obrigado!</h1>
-            <div class="content">
-                <p>Arnaldo Janssen Tavares Toledo Laudares</p>
-                <p style="font-size: 1.2rem; margin-top: 1rem; color: var(--primary);">Link Streamlit & Repositório documentado Github finalizados!</p>
+        <section class="slide title-slide" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <div style="margin: auto;">
+                <h1 style="font-size: 6rem; margin-bottom: 2rem;">Obrigado!</h1>
+                <p style="font-size: 2.2rem; color: var(--text-muted);">Arnaldo Janssen Tavares Toledo Laudares</p>
             </div>
         </section>
 
