@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação Datathon Fase 5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0E1117;
+            --bg-card: #1A1D29;
+            --text-main: #FFFFFF;
+            --text-muted: #9CA3AF;
+            --primary: #6C63FF;
+            --secondary: #A78BFA;
+            --success: #34D399;
+            --accent: #F472B6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-y: hidden;
+        }
+
+        .presentation {
+            display: flex;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        .presentation::-webkit-scrollbar {
+            height: 8px;
+        }
+        .presentation::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        .presentation::-webkit-scrollbar-thumb {
+            background: rgba(108, 99, 255, 0.4);
+            border-radius: 4px;
+        }
+
+        .slide {
+            flex: 0 0 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            padding: 4rem 8vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .content {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #E5E7EB;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            flex: 1;
+        }
+
+        ul { list-style-position: inside; padding-left: 1rem; }
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .highlight { color: var(--success); font-weight: 600; }
+        strong { color: var(--primary); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .blob-1 {
+            position: absolute;
+            top: -10vw;
+            right: -5vw;
+            width: 30vw;
+            height: 30vw;
+            background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 3rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+        .btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .progress {
+            position: fixed;
+            bottom: 3rem;
+            left: 3rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+        }
+
+        .slide.title-slide h1 { font-size: 4.5rem; margin-bottom: 1rem; }
+        .slide.title-slide p { font-size: 1.5rem; color: var(--text-muted); max-width: 600px; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            height: 100%;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(167,139,250,0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob-1"></div>
+
+    <div class="presentation" id="presentation">
+
+        <!-- Slide 1 -->
+        <section class="slide title-slide">
+            <h1>Datathon Fase 5<br><span style="color: var(--primary)">Passos Mágicos</span></h1>
+            <h2>Análise Educacional & Modelo Preditivo</h2>
+            <div class="content">
+                <p>Arnaldo Janssen T T L<br>POSTECH DTAT | 2026</p>
+            </div>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="slide">
+            <h1>Quem é a Passos Mágicos?</h1>
+            <div class="content grid-2">
+                <div>
+                    <ul>
+                        <li>Associação fundada em 1992 por Michelle e Dimetri</li>
+                        <li>32 anos transformando a vida de crianças de baixa renda em Embu-Guaçu/SP</li>
+                        <li>Educação de qualidade, apoio psicológico e protagonismo</li>
+                        <li>Desde 2016, um projeto social estruturado</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p style="font-size: 1.2rem; font-style: italic; color: var(--text-muted);">
+                        "Acreditamos que a educação é a ferramenta mais poderosa para a transformação social verdadeira e duradoura."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="slide">
+            <h1>O Desafio e os Dados</h1>
+            <div class="content grid-2">
+                <div>
+                    <ul>
+                        <li>Base de dados do <strong>PEDE</strong> (Pesquisa Extensiva do Desenvolvimento Educacional)</li>
+                        <li>Dados de 2022, 2023 e 2024 — <strong>3.030</strong> registros de alunos</li>
+                        <li>7 indicadores base: IAN, IDA, IEG, IAA, IPS, IPP, IPV</li>
+                        <li>Classificação por níveis (Pedras): Quartzo → Ágata → Ametista → Topázio</li>
+                    </ul>
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <strong>Objetivo:</strong> Responder perguntas analíticas e construir um modelo preditivo de <span class="highlight">Risco de Defasagem</span>.
+                    </div>
+                </div>
+                <!-- Gráfico ou Imagem representativa se houvesse, deixarei vazio ou com título -->
+            </div>
+        </section>
+
+        <!-- Slide 4 -->
+        <section class="slide">
+            <h1>Visão Geral: O Impacto</h1>
+            <div class="content grid-2">
+                <div>
+                    <ul>
+                        <li>Defasagem em queda: 69.9% (2022) → 54.4% (2023) → <span class="highlight">46.2%</span> (2024)</li>
+                        <li>Topázio (melhor pedra): 15.1% → 24.9% → <span class="highlight">30.9%</span></li>
+                        <li>~24% dos alunos sobem de pedra a cada ano</li>
+                        <li>IAN (Adequação) médio crescente: 6.42 → 7.68</li>
+                    </ul>
+                    <div class="card" style="margin-top: 2rem;">
+                        <p style="margin:0; font-size: 1.2rem;">Evidência indiscutível de que a permanência no programa transforma o resultado dos alunos.</p>
+                    </div>
+                </div>
+                <div class="img-container">
+                    <!-- Inserir gráfico real -->
+                    <img src="plots/p10_pedras_evolucao.png" alt="Evolução de Pedras">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5 -->
+        <section class="slide">
+            <h1>Os 7 Indicadores Educacionais e o INDE</h1>
+            <div class="content">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">O <strong>INDE</strong> (Índice de Desenvolvimento Educacional) é o índice global — uma combinação linear exata construída através desses 7 sub-indicadores que classifica o aluno na sua respectiva Pedra (Quartzo, Ágata, Ametista ou Topázio).</p>
+                <table>
+                    <tr><th>Sigla</th><th>Nome</th><th>O que mede</th></tr>
+                    <tr><td>IAN</td><td>Adequação ao Nível</td><td>Adequação de série vs idade do aluno</td></tr>
+                    <tr><td>IDA</td><td>Aprendizagem</td><td>Desempenho acadêmico nas ferramentas formais</td></tr>
+                    <tr><td>IEG</td><td>Engajamento</td><td>Participação proativa, entregas e frequência</td></tr>
+                    <tr><td>IAA</td><td>Autoavaliação</td><td>O senso autocrítico do aluno com o próprio desempenho</td></tr>
+                    <tr><td>IPS</td><td>Psicossocial</td><td>O suporte emocional e o convívio social na instituição</td></tr>
+                    <tr><td>IPP</td><td>Psicopedagógico</td><td>Suporte pedagógico necessário e recebido</td></tr>
+                    <tr><td>IPV</td><td>Ponto de Virada</td><td>Marcação de transformação profunda e irreversível na trajetória</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Slide 6 -->
+        <section class="slide">
+            <h1>A Escolha das Features do Modelo</h1>
+            <div class="content grid-2">
+                <div>
+                    <h2 style="font-size: 1.5rem; color: var(--accent);">Por que o INDE e o IAN foram removidos?</h2>
+                    <p style="font-size: 1.1rem; color: #E5E7EB; margin-bottom: 1.5rem;">O IAN é derivado matematicamente da defasagem (nosso target), e o INDE é a soma dos demais. Dar isso ao algoritmo é "data leakage". Ele não previa o futuro, apenas "lia a resposta".</p>
+                    
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Por que manter as 13 features restantes?</h2>
+                    <ul style="font-size: 1rem; line-height: 1.4;">
+                        <li><strong>IPV:</strong> Captura o momento genuíno de transformação na vida do aluno.</li>
+                        <li><strong>IEG:</strong> Aluno desengajado é sempre o 1º sinal empírico de risco de queda.</li>
+                        <li><strong>IDA:</strong> Evidência direta acadêmica (as notas em si).</li>
+                        <li><strong>Fase e Anos no Programa:</strong> O tempo de exposição à ONG garante a maturação da criança.</li>
+                        <li><strong>Notas M/P:</strong> Matemática e Português agem como termômetro raiz das dificuldades.</li>
+                    </ul>
+                </div>
+                <div class="img-container">
+                    <img src="plots/p9_feature_importance.png" alt="Feature Implementations">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7 -->
+        <section class="slide">
+            <h1>Top 3 Preditores de Risco</h1>
+            <div class="content grid-2">
+                <div>
+                    <div class="card" style="margin-bottom: 1rem; padding: 1rem;">
+                        <h3 style="color: var(--success); font-size: 1.2rem; margin-bottom: 0.3rem;">1. Ponto de Virada (IPV) — 13.8% de Importância</h3>
+                        <p style="font-size: 1rem">Atingir o FV faz o aluno raramente regredir. Alunos com alto IPV possuem IDA na casa de 7.55 (vs 5.08 do grupo baixo).</p>
+                    </div>
+                    <div class="card" style="margin-bottom: 1rem; padding: 1rem;">
+                        <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 0.3rem;">2. Engajamento (IEG) — 12.4% de Importância</h3>
+                        <p style="font-size: 1rem">Causa e consequência. Tem alta correlação com notas boas. Monitorar a presença salva estudantes a tempo.</p>
+                    </div>
+                    <div class="card" style="padding: 1rem;">
+                        <h3 style="color: var(--secondary); font-size: 1.2rem; margin-bottom: 0.3rem;">3. Desempenho Real (IDA) — 11.1% de Importância</h3>
+                        <p style="font-size: 1rem">Nota bruta abaixo de 5.0 quase obrigatoriamente acompanha a defasagem.</p>
+                    </div>
+                </div>
+                <div class="img-container">
+                    <!-- Gráfico 3d ou correlato -->
+                    <img src="plots/p3_ieg_ida_ipv.png" alt="IEG vs IDA vs IPV">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8 -->
+        <section class="slide">
+            <h1>Indicadores de Apoio e Alertas</h1>
+            <div class="content grid-2">
+                <div>
+                    <ul style="font-size: 1.1rem; line-height: 1.6;">
+                        <li><strong>IPS (Psicossocial):</strong> Quedas nesse pilar precedem reduções fortes de nota escolar. Tem perfil preditivo de alerta (Early Warning).</li>
+                        <li><strong>IPP (Psicopedagógico):</strong> Ajuda complementar profunda, não correlaciona quase nada com o IAN puro (correlação 0.12), por agir de forma paralela preenchendo as arestas.</li>
+                        <li><strong>IAA (Autoavaliação):</strong> Em turmas de base de recém-chegados (Quartzo), superestimam a própria nota em 2.29 pontos e por isso se frustram e não procuram ajuda a tempo.</li>
+                        <li><strong>Escola Pública:</strong> Média IDA de -.73 mas possuem +1.36 de Engajamento por valorizarem a oportunidade.</li>
+                        <li><strong>Gênero:</strong> Importância estatística insignificante perto das demais métricas comportamentais ou socioeconômicas (embora meninas tenham INDE levemente acima 7.34 vs 7.19).</li>
+                    </ul>
+                </div>
+                <div class="img-container">
+                    <img src="plots/p4_autoavaliacao.png" alt="Gráfico de Autoavaliação enviesada">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9 -->
+        <section class="slide">
+            <h1>A Metodologia do Modelo</h1>
+            <div class="content grid-2">
+                <div>
+                    <ul>
+                        <li><strong>O Target do Modelo (Y):</strong> Defasagem estritamente &lt; 0 (Saber se o aluno está abaixo do nível ideal), deixando de agrupar quem estava no mesmo bolo dos que estavam à frente do nível (=1 ou mais).</li>
+                        <li><strong>Pipeline:</strong> Imputação (Via Mediana pela Fase do Aluno) &rarr; MinMax Normalização &rarr; Submissão à Classificação Binária.</li>
+                        <li><strong>Divisão / Separação Realista Temporal:</strong> O modelo treinou com 1874 alunos dos anos passados (2022 e 2023) e fez a validação e as provas contra o "futuro", com os 1156 alunos restantes de 2024.</li>
+                        <li><strong>As Técnicas Testadas:</strong> Regressão Logística vs Random Forest vs Gradient Boosting.</li>
+                    </ul>
+                </div>
+                <div class="img-container">
+                    <!-- Podemos usar o heatmap como representação visual da etapa estatística descritiva antes da modelagem -->
+                    <img src="plots/p8_heatmap_correlacao.png" alt="Heatmap Correlativo de Modelagem">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10 -->
+        <section class="slide">
+            <h1>Resultados & Random Forest</h1>
+            <div class="content grid-2">
+                <div>
+                    <table>
+                        <tr><th>Modelo</th><th>F1-Score</th><th>Recall</th><th>ROC-AUC</th></tr>
+                        <tr><td>Regressão Logística</td><td>0.622</td><td>0.708</td><td>0.617</td></tr>
+                        <tr style="background: rgba(108,99,255,0.15)"><td><strong>Random Forest</strong></td><td><strong>0.659</strong></td><td><strong>0.811</strong></td><td><strong>0.677</strong></td></tr>
+                        <tr><td>Gradient Boosting</td><td>0.642</td><td>0.758</td><td>0.677</td></tr>
+                    </table>
+                    <div class="card" style="margin-top: 1rem;">
+                        <p style="font-size: 1.1rem; color: var(--success); margin-bottom: 0.5rem;">
+                            <strong>A lição mais sagrada desse modelo:</strong>
+                        </p>
+                        <p style="font-size: 1rem; color: var(--text-muted);">
+                            O modelo <strong>aprende inteiramente a partir do comportamento social e rotineiro</strong> daquela criança, e não da sua defasagem em si. <br>
+                            Com o topo sendo liderado pelo quarteto de IPV (13.8%), IEG (12.4%), Fase (11.4%) e IDA (11.1%), o Random Forest previne e alcança 4 de cada 5 alunos em risco antecipadamente, cravando os 81% massivos de Recall final.
+                        </p>
+                    </div>
+                </div>
+                <div class="img-container">
+                    <img src="plots/p9_modelo_avaliacao.png" alt="Avaliação final - ROC e PR">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11 -->
+        <section class="slide">
+            <h1>Aplicação Interativa (Streamlit)</h1>
+            <div class="content grid-2">
+                <div>
+                    <ul>
+                        <li><strong>Visão Geral:</strong> Dados históricos e KPIs essenciais da Ong (painéis filtráveis).</li>
+                        <li><strong>Insights Narrativos (Storytelling):</strong> Gráficos guiados respondendo perfeitamente as dores pedagógicas.</li>
+                        <li><strong>Predição Dinâmica:</strong> Formulário e painel de operação onde a liderança da ONG pode inserir os dados parciais das notas de prova pra tirar um cálculo amostral.</li>
+                    </ul>
+                </div>
+                <div class="card" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                    <h2 style="margin:0; text-align: center;">🎨 DEMONSTRAÇÃO<br><span style="font-size:1.2rem; font-weight: 300; color:var(--text-muted);">Visualizar o APP aberto em produção</span></h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12 -->
+        <section class="slide">
+            <h1>O Que Aprendi & O Que Recomendo</h1>
+            <div class="content">
+                <div class="card">
+                    <p style="margin-bottom: 1rem;">Fica provado que a persistência no ecossistema Passos Mágicos traz o real impacto esperado. Como conclusões finais de recomendação, <strong>eu indico</strong>:</p>
+                    <ul>
+                        <li>Monitorar sistematicamente sempre o <strong>Engajamento</strong> e a <strong>Área Psicossocial</strong> — eles denunciam a vulnerabilidade do aluno antes da própria nota de corte.</li>
+                        <li>Embarcar definitivamente as estimativas de probabilidade do aplicativo ao fluxo de controle dos monitores, cruzando as metas educacionais no papel.</li>
+                        <li>Através dos alertas de autoavaliação enviesadas, trabalhar uma reestruturação mais incisiva na base de alunos Quartzo na entrada do projeto para que reconheçam suas inabilidades matemáticas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13 -->
+        <section class="slide title-slide" style="align-items: center; text-align: center;">
+            <h1 style="font-size: 5rem;">Obrigado!</h1>
+            <div class="content">
+                <p>Arnaldo Janssen Tavares Toledo Laudares</p>
+                <p style="font-size: 1.2rem; margin-top: 1rem; color: var(--primary);">Link Streamlit & Repositório documentado Github finalizados!</p>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="progress" id="progress">Slide 1 / 13</div>
+    <div class="controls">
+        <button class="btn" id="prevBtn">← Anterior</button>
+        <button class="btn" id="nextBtn">Próximo →</button>
+    </div>
+
+    <script>
+        const presentation = document.getElementById('presentation');
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+
+        function updateProgress() {
+            const slideWidth = presentation.clientWidth;
+            currentSlide = Math.round(presentation.scrollLeft / slideWidth);
+            progress.innerText = `Slide ${currentSlide + 1} / ${slides.length}`;
+            
+            prevBtn.style.opacity = currentSlide === 0 ? '0.3' : '1';
+            nextBtn.style.opacity = currentSlide === slides.length - 1 ? '0.3' : '1';
+        }
+
+        presentation.addEventListener('scroll', () => {
+            requestAnimationFrame(updateProgress);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                presentation.scrollTo({
+                    left: (currentSlide + 1) * presentation.clientWidth,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                presentation.scrollTo({
+                    left: (currentSlide - 1) * presentation.clientWidth,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            }
+        });
+        
+        // Handling resize
+        window.addEventListener('resize', () => {
+            presentation.scrollTo({
+                left: currentSlide * presentation.clientWidth,
+                behavior: 'auto'
+            });
+            updateProgress();
+        });
+        
+        updateProgress();
+    </script>
+</body>
+</html>
