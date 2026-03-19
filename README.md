@@ -1,6 +1,6 @@
 # Datathon Fase 5 - Passos Mágicos
 
-**🌐 App ao vivo (Streamlit):** [https://datathon-5-ajttl.streamlit.app/](https://datathon-5-ajttl.streamlit.app/)
+**App (Streamlit):** [https://datathon-5-ajttl.streamlit.app/](https://datathon-5-ajttl.streamlit.app/)
 
 Análise de dados educacionais e modelo preditivo de risco de defasagem para a Associação Passos Mágicos.
 
